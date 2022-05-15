@@ -8,33 +8,48 @@ const rl = readline.createInterface({
 });
 
 let solution = "Hello"
-let guess = ""
+let guess = []
 
 const checkInput = (input) => {
-    solution = solution.split("")
 
-    for (let i = 0; i < solution.length; i++) {
-        if(input === solution[i]) {
-            console.log(solution, "solution array")
-            guess += input
+   let arrsolution = solution.split("")
+
+   //filling guess array with empty string with exact length of solution
+   if(guess.length === 0){
+    for(let i = 0; i < solution.length; i++){
+      guess.push(' ')
+    }
+   }
+
+   //if input matches put input into guess array at correct index
+    for (let i = 0; i < arrsolution.length; i++) {
+        if(input === arrsolution[i]) {
+            guess[i] = input
         }
     }
+    
+
+    //if guess array no longer includes empty string that means the word is completed and the player has won return true
+    if(guess.includes(' ') === false){
+      return true
+    }
+
 }
 
 const hangman = (str) => {
 
-    if(str === solution) {
-        // console.log("working")
-        return "You guessed it!"
-    } else {
-        checkInput(str)
-        console.log(guess, "----guess----")
+    if(checkInput(str)){
+      console.log(guess)
+      let string = guess.join('')
+      console.log(`You Won! The word was: ${string}`)
+    }
+    else{
+      console.log(guess)
+      checkInput(str)
+ 
     }
 }
 
-// const countIt = (str) => {
-//     console.log('BOOMS', str.length)
-//   }
 
 
 
