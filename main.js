@@ -7,32 +7,43 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-let solution = "Hello"
+let solution = ""
 let guess = []
+let possSolution = ["hello", "goodbye", "seeya", "howdy", "later", "ola", "goodnight"]
+
+solution = possSolution[Math.floor(Math.random() * possSolution.length)]
+console.log(possSolution.length)
+console.log(solution, "----solution----")
+
+// const wordGenerator = () => {
+  // let possSolution = "abcdefghijklmnopqrstuvwxyz"
+  // for(let i = 0; i < 8; i++) {
+  //   solution +=  possSolution.charAt(Math.floor(Math.random() * possSolution.length))
+  // } 
+// }
+// wordGenerator()
 
 const checkInput = (input) => {
+  solution = solution.toLowerCase().trim()
 
-   let arrsolution = solution.split("")
-
-   //filling guess array with empty string with exact length of solution
-   if(guess.length === 0){
+  let arrsolution = solution.split("")
+  //filling guess array with empty string with exact length of solution
+  if(guess.length === 0){
     for(let i = 0; i < solution.length; i++){
       guess.push(' ')
     }
-   }
-
-   //if input matches put input into guess array at correct index
-    for (let i = 0; i < arrsolution.length; i++) {
-        if(input === arrsolution[i]) {
-            guess[i] = input
-        }
+  }
+  //if input matches put input into guess array at correct index
+  for (let i = 0; i < arrsolution.length; i++) {
+    if(input === arrsolution[i]) {
+      guess[i] = input
     }
-    
-
-    //if guess array no longer includes empty string that means the word is completed and the player has won return true
-    if(guess.includes(' ') === false){
-      return true
-    }
+  }
+   
+   //if guess array no longer includes empty string that means the word is completed and the player has won return true
+  if(guess.includes(' ') === false){
+    return true
+  }
 
 }
 
@@ -69,7 +80,7 @@ const getPrompt = () =>  {
         assert.equal(typeof hangman, "function");
       });
       it('should be able to detect a win', () => {
-        assert.equal(hangman("l"), 'You guessed it!');
+        assert.equal(hangman("Hello"), 'You guessed it!');
       });
       
     });
