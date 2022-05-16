@@ -26,16 +26,16 @@ console.log(solution, "----solution----")
 const checkInput = (input) => {
   solution = solution.toLowerCase().trim()
 
-  let arrsolution = solution.split("")
+  let arrSolution = solution.split("")
   //filling guess array with empty string with exact length of solution
   if(guess.length === 0){
     for(let i = 0; i < solution.length; i++){
       guess.push(' ')
     }
   }
-  //if input matches put input into guess array at correct index
-  for (let i = 0; i < arrsolution.length; i++) {
-    if(input === arrsolution[i]) {
+  //if input matches solution place input into guess array at correct index
+  for (let i = 0; i < arrSolution.length; i++) {
+    if(input === arrSolution[i]) {
       guess[i] = input
     }
   }
