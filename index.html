@@ -3,13 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <script src="main.js"></script>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <hr/>
-    <div id="display-element"></div>
-    <button onclick="displayDate()">Click Me</button>
-    <hr/>
+    <div>
+      <label for="userInput">Input:</label>
+      <input type="text" id="userInput">
+      <button id="Submit" onclick="hangman()">Submit</button>
+    </div>
+    <hr>
+    <div><ul id="possible-inputs">Possible Inputs:</ul></div>
+    <hr>
+    <div><ul id="used-inputs">Used Inputs:</ul></div>
+    <hr>
+    <div><ul id="winner-message"></ul></div>
+    <script src="main.js"></script>
   </body>
 </html>
