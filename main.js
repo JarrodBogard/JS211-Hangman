@@ -20,10 +20,12 @@ input.addEventListener("keyup", e => {
   console.log(inputStr)
 })
 
+// winner message element
 const message = document.querySelector("#winner-message")
 message.style.listStyle = "none"
 const messageItem = document.createElement("li")
 
+// possible input list 
 const possList = document.querySelector("#possible-inputs")
 possList.style.listStyle = "none"
 const inputItem = document.createElement("li")
@@ -31,6 +33,7 @@ inputItem.style.letterSpacing = "2px"
 inputItem.innerText = possInputs
 possList.appendChild(inputItem)
 
+// used input list 
 const usedList = document.querySelector("#used-inputs")
 usedList.style.listStyle = "none"
 const usedItem = document.createElement("li")
@@ -38,9 +41,7 @@ usedItem.style.letterSpacing = "2px"
 usedItem.innerText = usedInputs
 usedList.appendChild(usedItem)
 
-
-
-
+// generates random solution from possSoltion array 
 solution = possSolution[Math.floor(Math.random() * possSolution.length)]
 console.log(possSolution.length)
 console.log(solution, "----solution----")
@@ -71,12 +72,14 @@ const checkInput = (input) => {
   
 }
 
+
 const hangman = (str) => {
   str = inputStr
   if(checkInput(str)){
     console.log(guess)
     let string = guess.join('')
     console.log(`You Won! The word was: ${string}`)
+    // winner message will display on DOM //
     messageItem.innerText = `You Won! The word was: ${string}`
     message.append(messageItem.innerText)
     
@@ -89,35 +92,23 @@ const hangman = (str) => {
   }
 }
 
-
-// create list of possible inputs on DOM (done)
-
-// remove inputs as they are used from possible inputs list (done)
-
-// create functions that perform the pop and unshift methods after each entry
-
-// const removeInput = possInputs.pop()
-// console.log(removeInput, "---pop---")
-
-//place poss inputs in a list (done)
-
-// place used inputs in a separate list of used inputs (done)
-// usedInputs.unshift(removeInput)
-// console.log(usedInputs, "---unshift---")
-// console.log(possInputs)
-
-
+// compares user input to possible inputs available, and removes inputs that are used from the 
+// possible inputs to the used inputs array so that the user can see which letters they have used on the DOM
 const switchArrays = () => {
   for(let i = 0; i < possInputs.length; i++) {
     if(inputStr === possInputs[i]) {
+      // removes user input from the possInputs array and places in empty usedList array //
       let removeInput = possInputs.splice(i, 1)
-      console.log(removeInput, "removed input")
       usedInputs += removeInput + " "
       usedList.innerText = ""
       usedList.append("Used Inputs: ", usedInputs)
+
+      // displays updated possInputs array //
       input.value = ""
       possList.innerText = ""
       possList.append("Possible Inputs: ", possInputs)
+
+      console.log(removeInput, "removed input")
       console.log(usedInputs, "----usedInputs Array----")
       console.log(possInputs, "----possInputs Array----")
       return true
