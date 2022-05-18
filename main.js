@@ -13,6 +13,9 @@ let guess = []
 let usedInputs = []
 const possSolution = ["hello", "goodbye", "seeya", "howdy", "later", "ola", "goodnight"]
 const possInputs = ["a", "b", "c", "d", "e", 'f', "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+const submitButton = document.getElementById("submit")
+let numberOfClicks = 0
+
 
 const input = document.querySelector("#userInput")
 input.addEventListener("keyup", e => {
@@ -72,12 +75,22 @@ const checkInput = (input) => {
   
 }
 
+const youLose = () => { 
+  if(inputStr != solution)
+  submitButton.addEventListener("click", () => {  
+    numberOfClicks += 1
+    if(numberOfClicks === 10) console.log("you dead...")
+    console.log(numberOfClicks)
+  })
+}
 
 const hangman = (str) => {
   str = inputStr
   if(checkInput(str)){
+    switchArrays()
     console.log(guess)
     let string = guess.join('')
+    message.innerHTML = ""
     console.log(`You Won! The word was: ${string}`)
     // winner message will display on DOM //
     messageItem.innerText = `You Won! The word was: ${string}`
@@ -87,49 +100,52 @@ const hangman = (str) => {
   else{
     switchArrays()
     checkInput(str)
-    // message.append(guess)
     console.log(guess)
   }
 }
 
-// compares user input to possible inputs available, and removes inputs that are used from the 
-// possible inputs to the used inputs array so that the user can see which letters they have used on the DOM
+
 const switchArrays = () => {
   for(let i = 0; i < possInputs.length; i++) {
-    if(inputStr === possInputs[i]) {
+    if(inputStr === possInputs[i] && inputStr !== usedInputs[i]) {
       // removes user input from the possInputs array and places in empty usedList array //
       let removeInput = possInputs.splice(i, 1)
       usedInputs += removeInput + " "
       usedList.innerText = ""
       usedList.append("Used Inputs: ", usedInputs)
-
+      
       // displays updated possInputs array //
       input.value = ""
       possList.innerText = ""
       possList.append("Possible Inputs: ", possInputs)
-
+      
+      // displays correct guesses //
+      message.innerText = ""
+      message.append(guess)
+      
       console.log(removeInput, "removed input")
       console.log(usedInputs, "----usedInputs Array----")
       console.log(possInputs, "----possInputs Array----")
-      return true
-    } 
-    // else {
-    //   console.log("You already entered that letter. Try again.")
-    //   return usedList.innerText = "You already entered that letter. Try again."
-    // }
+        return true
+      }
+      else {
+        // console.log("Please make an entry or enter a letter not already used.")
+        usedList.innerText = "Please make an entry or enter a letter not already used."
+        // youLose()
+      }
+    }
   }
- 
-}
-// const getPrompt = () =>  {
-//     rl.question('Input a letter: ', (str) => {
-//       hangman(str);
-//       getPrompt();
-//     });
-//   }
   
-//   if (typeof describe === 'function') {
-//     solution = "Hello"
-//     describe('hangman()', () => {
+  // const getPrompt = () =>  {
+    //     rl.question('Input a letter: ', (str) => {
+      //       hangman(str);
+      //       getPrompt();
+      //     });
+      //   }
+      
+      //   if (typeof describe === 'function') {
+        //     solution = "Hello"
+        //     describe('hangman()', () => {
         
 //       it('should be of type function', () => {  
 //         assert.equal(typeof hangman, "function");
