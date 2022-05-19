@@ -20,7 +20,7 @@ console.log(solution, "----solution----")
 
 
 const checkInput = (input) => {
-  solution = solution.toLowerCase().trim()
+  input = input.toLowerCase().trim()
   let arrSolution = solution.split("")
 
   //filling guess array with empty string with exact length of solution

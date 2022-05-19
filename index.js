@@ -11,7 +11,8 @@ let counter = 10
 
 const input = document.querySelector("#userInput")
 input.addEventListener("keyup", e => {
-  inputStr = e.target.value
+  let trim = e.target.value
+  inputStr = trim.toLowerCase().trim()
   console.log(inputStr)
 })
 
@@ -43,7 +44,7 @@ console.log(solution, "----solution----")
 
 
 const checkInput = (input) => {
-    solution = solution.toLowerCase().trim()
+    // input = input.toLowerCase().trim()
     let arrSolution = solution.split("")
 
     //filling guess array with empty string with exact length of solution
