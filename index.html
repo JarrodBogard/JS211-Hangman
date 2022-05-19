@@ -3,6 +3,33 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style>
+      table {
+        border: 1px solid black;
+        border-spacing: 0;
+        width: 400px;
+        height: 400px;
+      }
+      .square {
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bolder;
+      }
+
+      .vertical {
+        
+        width: 40px;
+        height: 40px;
+      }
+      
+      div .vertical {
+        background-color: black;
+        width: 5px;
+      }
+    </style>
   </head>
   <body>
     <div>
@@ -16,6 +43,34 @@
     <div><ul id="used-inputs">Used Inputs:</ul></div>
     <hr>
     <div><ul id="winner-message"></ul></div>
-    <script src="main.js"></script>
+    <div>
+      <table>
+        <tr>
+          <td class="square vertical"><div></div></td>
+          <td class="square"><div></div></td>
+          <td class="square"><div></div></td>
+          <td class="square"><div></div></td>
+        </tr>
+        <tr>
+          <td class="square vertical"><div></div></td>
+          <td class="square"><div></div></td>
+          <td class="square"><div></div></td>
+          <td class="square"><div></div></td>
+        </tr>
+        <tr>
+          <td class="square vertical"><div></div></td>
+          <td class="square"><div></div></td>
+          <td class="square"><div></div></td>
+          <td class="square"><div></div></td>
+        </tr>
+        <tr>
+          <td class="square vertical"><div></div></td>
+          <td class="square"><div></div></td>
+          <td class="square"><div></div></td>
+          <td class="square"><div></div></td>
+        </tr>
+      </table>
+    </div>
+    <script src="index.js"></script>
   </body>
 </html>
