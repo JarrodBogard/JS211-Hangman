@@ -63,7 +63,7 @@ const checkInput = (input) => {
     }
 
     // if input does not match it will remove 1 from the counter
-    if(!arrSolution.includes(input)) {
+    if(!arrSolution.includes(input) && !usedInputs.includes(input) ) {
       counter--
       console.log(`You have ${counter} lives left.`)
     }
@@ -99,6 +99,7 @@ const hangman = (str) => {
     messageItem.innerText = `You Won! The word was: ${string}`
     message.append(messageItem.innerText)
     } else {
+
         switchArrays()
     }
 }
